@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<script>
+function printAsync(text, delay){
+  const p = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log(text);
+      resolve();
+    }, delay);
+  });
+  return p;
+}
+
+printAsync('hello', 500)
+  .then(() => printAsync('world', 500))
+  .then(() => printAsync('lorem', 500))
+  .then(() => printAsync('ipsum', 500));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<script>
+function openFile(url){
+  const p = new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.addEventListener('load', (e) => {
+      console.log(xhr.responseText);
+      resolve();
+    });
+    xhr.send();
+  });
+  return p;
+}
+
+openFile('../data/foo.txt')
+  .then(() => openFile('../data/bar.txt'))
+  .then(() => openFile('../data/baz.txt'))
+  .then(() => console.log('done!'));
+</script>
+
+</body>
+</html>

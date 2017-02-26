@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<script>
+function openFile(url){
+  const p = new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.addEventListener('load', (e) => {
+      console.log(xhr.responseText);
+      resolve();
+    });
+    xhr.send();
+  });
+  return p;
+}
+
+async function loadAllFiles(){
+  const xhr1 = await openFile('../data/foo.txt');
+  const xhr2 = await openFile('../data/bar.txt');
+  const xhr3 = await openFile('../data/baz.txt');
+  console.log('done!');
+}
+
+loadAllFiles();
+
+</script>
+
+</body>
+</html>
